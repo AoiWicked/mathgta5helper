@@ -1,0 +1,26 @@
+@import "tailwindcss";
+
+:root {
+    color-scheme: light dark;
+}
+.container {
+    @apply mx-auto max-w-4xl p-6;
+}
+.card {
+    @apply bg-white/5 backdrop-blur rounded-2xl p-5 shadow-lg ring-1 ring-white/10;
+}
+.btn {
+    @apply inline-flex items-center gap-2 rounded-xl px-4 py-2 font-medium ring-1 ring-white/20 hover:ring-white/40 transition;
+}
+.input {
+    @apply rounded-xl px-3 py-2 bg-white/10 ring-1 ring-white/20 focus:ring-white/40 outline-none;
+}
+.grid-cell {
+    @apply w-9 h-9 text-center align-middle font-semibold rounded-md;
+}
+.highlight {
+    @apply ring-2 ring-emerald-400 ring-offset-2 ring-offset-black;
+}
+body {
+    @apply min-h-screen bg-gradient-to-br from-slate-900 via-violet-900 to-indigo-900 text-slate-100;
+}
