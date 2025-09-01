@@ -22,10 +22,18 @@ export default function DropZone({ onGrid }: Props) {
                     onGrid(parseTextGrid(text), text);
                     setHint("TXT/CSV разобран");
                 } else if (file.type.startsWith("image/")) {
-                    const { data } = await Tesseract.recognize(file, "eng", {
+                    const opts = {
                         tessedit_char_whitelist: "0123456789 ",
                         preserve_interword_spaces: "1",
-                    } as any);
+                    } as unknown as Partial<
+                        import("tesseract.js").WorkerOptions
+                    >;
+
+                    const { data } = await Tesseract.recognize(
+                        file,
+                        "eng",
+                        opts
+                    );
                     onGrid(parseTextGrid(data.text), data.text);
                     setHint("OCR готов");
                 } else {
