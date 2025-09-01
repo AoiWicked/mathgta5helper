@@ -23,10 +23,9 @@ export default function DropZone({ onGrid }: Props) {
                     setHint("TXT/CSV разобран");
                 } else if (file.type.startsWith("image/")) {
                     const { data } = await Tesseract.recognize(file, "eng", {
-                        // @ts-expect-error
                         tessedit_char_whitelist: "0123456789 ",
                         preserve_interword_spaces: "1",
-                    });
+                    } as any);
                     onGrid(parseTextGrid(data.text), data.text);
                     setHint("OCR готов");
                 } else {
