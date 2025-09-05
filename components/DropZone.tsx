@@ -49,13 +49,11 @@ export default function DropZone({ onGrid }: Props) {
         [onGrid]
     );
 
-    // ⬇️ Вставка из буфера обмена (Ctrl+V): изображение или текстовая таблица
     useEffect(() => {
         const onPaste = async (e: ClipboardEvent) => {
             const dt = e.clipboardData;
             if (!dt) return;
 
-            // 1) Если есть картинка в буфере — обрабатываем как файл
             const items = Array.from(dt.items || []);
             const imgItem = items.find(
                 (it) => it.kind === "file" && it.type.startsWith("image/")
@@ -70,7 +68,6 @@ export default function DropZone({ onGrid }: Props) {
                 return;
             }
 
-            // 2) Иначе пробуем текст
             const text = dt.getData("text/plain");
             if (text && /\d/.test(text)) {
                 e.preventDefault();
